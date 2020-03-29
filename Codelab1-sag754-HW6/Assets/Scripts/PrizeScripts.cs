@@ -12,7 +12,7 @@ public class PrizeScripts : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audio = GetComponent<AudioSource>();
+        audio = GetComponent<AudioSource>();  
     }
 
     // Update is called once per frame
@@ -23,14 +23,15 @@ public class PrizeScripts : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) //if something enters this trigger
     {
+        popParticles.Play();
         audio.Play();
         ding.Play();
-        popParticles.Play();
-        GetComponent<Renderer>().enabled = false; //stop drawing it
+        GetComponent<Renderer>().enabled = false; //stop rendering it
         Invoke("DelayDestroy", 2.7f); //in 2.7 seconds, call DelayDestroy
     }
 
-    void DelayDestroy(){
-        Destroy(gameObject); //Destroy this objects
-    }
+   void DelayDestroy()
+   {
+       Destroy(gameObject); //Destroy the object
+   }
 }
