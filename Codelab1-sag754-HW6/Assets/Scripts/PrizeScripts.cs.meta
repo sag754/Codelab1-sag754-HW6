@@ -3,7 +3,10 @@ guid: 6798203d18be3405888e9ff71ad13a7b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - audio: {instanceID: 0}
+  - popParticles: {fileID: 2930213204886361742, guid: a9e83f26b61a0ee45bdc23f888b88081,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
