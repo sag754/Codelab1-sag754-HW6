@@ -70,6 +70,7 @@ public class PointChecker : MonoBehaviour
 
     void NextLevel()
     {
+        GameManager.instance.hit = 0;
         failureText.enabled = false;
         completeText.enabled = false;
         successText.enabled = false;
