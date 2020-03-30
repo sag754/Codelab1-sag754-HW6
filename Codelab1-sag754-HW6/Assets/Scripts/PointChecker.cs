@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PointChecker : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class PointChecker : MonoBehaviour
     public AudioSource yay;
     public AudioSource complete;
     public AudioSource wrong;
+
+    [SerializeField] private Image completeText;
+    [SerializeField] private Image failureText;
+    [SerializeField] private Image successText;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +36,10 @@ public class PointChecker : MonoBehaviour
     {
         if (GameManager.instance.hit >= perfectHit)
         {
+            if(other.CompareTag("Player"))
+            {
+                successText.enabled = true;
+            }
             yay.Play();
             complete.Play();
             currentLevel++;
@@ -39,6 +48,10 @@ public class PointChecker : MonoBehaviour
 
         if (GameManager.instance.hit == targetHit)
         {
+            if (other.CompareTag("Player"))
+            {
+               completeText.enabled = true;
+            }
             complete.Play();
             currentLevel++;
             Invoke("NextLevel", 4f); 
@@ -46,6 +59,10 @@ public class PointChecker : MonoBehaviour
         
         if(GameManager.instance.hit <= missHit)
         {
+            if (other.CompareTag("Player"))
+            {
+                failureText.enabled = true;
+            }
             wrong.Play();
             Invoke("Reset", 2f);
         }
@@ -53,6 +70,9 @@ public class PointChecker : MonoBehaviour
 
     void NextLevel()
     {
+        failureText.enabled = false;
+        completeText.enabled = false;
+        successText.enabled = false;
         SceneManager.LoadScene(currentLevel);
     }
 
