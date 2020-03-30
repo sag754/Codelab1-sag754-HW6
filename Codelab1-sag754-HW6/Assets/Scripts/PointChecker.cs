@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PointChecker : MonoBehaviour
@@ -8,6 +9,7 @@ public class PointChecker : MonoBehaviour
     public float perfectHit = 4;
     public float missHit = 2;
 
+    public AudioSource yay;
     public AudioSource complete;
     public AudioSource wrong;
 
@@ -27,19 +29,25 @@ public class PointChecker : MonoBehaviour
     {
         if (GameManager.instance.hit >= perfectHit)
         {
+            yay.Play();
             complete.Play();
-            GetComponent<Renderer>().enabled = true; //stop rendering it
+            Invoke("NextLevel", 4f); 
         }
 
         if (GameManager.instance.hit == targetHit)
         {
             complete.Play();
-            GetComponent<Renderer>().enabled = true; //stop rendering it
+            Invoke("NextLevel", 4f); 
         }
         
         if(GameManager.instance.hit <= missHit)
         {
             wrong.Play();
         }
-   }
+    }
+
+    void NextLevel()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

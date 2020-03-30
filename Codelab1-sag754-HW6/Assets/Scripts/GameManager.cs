@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public float score = 0;
     public float hit = 0;
 
+
     private void Awake()
     {
         if (instance == null)
