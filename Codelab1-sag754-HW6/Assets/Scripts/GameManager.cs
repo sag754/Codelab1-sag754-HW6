@@ -2,10 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public Text infoText;
+    public Text infoHits;
+    public Text resetInfo;
+
+    public float score = 0;
+    public float hit = 0;
 
     private void Awake()
     {
@@ -26,11 +34,17 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            SceneManager.LoadScene(0); //or whatever number your scene is
+        infoText.text = "Score: " + score;
+        infoHits.text = "Hits: " + hit + "/3";
+        resetInfo.text = "Reset at anytime by pressing R.";
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            score = 0;
+            hit = 0;
+            SceneManager.LoadScene(0); //or whatever number your scene is
+        }
     }
 }

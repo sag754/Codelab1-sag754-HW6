@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PrizeScripts : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PrizeScripts : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) //if something enters this trigger
     {
+        GameManager.instance.hit++;
+        GameManager.instance.score += 1000;
         popParticles.Play();
         audio.Play();
         ding.Play();
