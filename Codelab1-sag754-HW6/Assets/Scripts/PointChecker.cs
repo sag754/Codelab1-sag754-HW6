@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PointChecker : MonoBehaviour
 {
+    public static int currentLevel= 0;
+
     public float targetHit = 3;
     public float perfectHit = 4;
     public float missHit = 2;
@@ -31,23 +33,31 @@ public class PointChecker : MonoBehaviour
         {
             yay.Play();
             complete.Play();
+            currentLevel++;
             Invoke("NextLevel", 4f); 
         }
 
         if (GameManager.instance.hit == targetHit)
         {
             complete.Play();
+            currentLevel++;
             Invoke("NextLevel", 4f); 
         }
         
         if(GameManager.instance.hit <= missHit)
         {
             wrong.Play();
+            Invoke("Reset", 2f);
         }
     }
 
     void NextLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(currentLevel);
+    }
+
+    void Reset()
+    {
+        SceneManager.LoadScene(currentLevel);
     }
 }
