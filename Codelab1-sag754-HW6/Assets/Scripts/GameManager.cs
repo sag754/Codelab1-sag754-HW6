@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public static int resetLevel = 0;
+
     public Text infoText;
     public Text infoHits;
     public Text resetInfo;
@@ -45,7 +47,7 @@ public class GameManager : MonoBehaviour
         {
             score = 0;
             hit = 0;
-            SceneManager.LoadScene(0); //or whatever number your scene is
+            SceneManager.LoadScene(0);
         }
     }
 }
